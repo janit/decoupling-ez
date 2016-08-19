@@ -13,7 +13,7 @@
             type: ezstring
             name: Title
             identifier: title
-            require: false
+            require: true
         -
             type: ezauthor
             name: Author
@@ -23,7 +23,7 @@
             type: ezrichtext
             name: Description
             identifier: description
-            required: true
+            required: false
         -
             type: ezimage
             name: Image
@@ -39,14 +39,23 @@
             type: ezstring
             name: Starting point
             identifier: starting_point
-            required: true
+            required: false
         -
             type: ezstring
             name: Ending point
             identifier: ending_point
-            required: true
+            required: false
         -
             type: ezinteger
             name: Length
             identifier: length
-            required: true
+            required: false
+
+-
+    mode: create
+    type: content
+    content_type: ride
+    main_location: 2
+    priority: 0
+    attributes:
+        - title: 'First ride'

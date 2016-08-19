@@ -1,0 +1,52 @@
+# Auto-generated Migration definition: Please modify to suit your needs (and remove this line ;-)!
+
+-
+    mode: create
+    type: content_type
+    content_type_group: 1
+    name: Ride
+    identifier: ride
+    name_pattern: <title>
+    is_container: false
+    attributes:
+        -
+            type: ezstring
+            name: Title
+            identifier: title
+            require: false
+        -
+            type: ezauthor
+            name: Author
+            identifier: author
+            require: false
+        -
+            type: ezrichtext
+            name: Description
+            identifier: description
+            required: true
+        -
+            type: ezimage
+            name: Image
+            identifier: image
+            required: false
+        -
+            type: ezselection
+            name: Difficulty level
+            identifier: difficulty_level
+            field-settings:
+                options: ['Easy', 'Intermediate', 'Hard']
+        -
+            type: ezstring
+            name: Starting point
+            identifier: starting_point
+            required: true
+        -
+            type: ezstring
+            name: Ending point
+            identifier: ending_point
+            required: true
+        -
+            type: ezinteger
+            name: Length
+            identifier: length
+            required: true

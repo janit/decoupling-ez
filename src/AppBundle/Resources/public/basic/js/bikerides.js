@@ -25,13 +25,13 @@ new Vue({
             new eZ.SessionAuthAgent(credentials)
         )
 
-        this.refreshItemList();
+        this.refreshBikerideList();
 
     },
 
     methods: {
 
-        refreshItemList: function(){
+        refreshBikerideList: function(){
 
             console.log('REFESH');
 

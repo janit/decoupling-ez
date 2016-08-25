@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>EZ</title>
+</head>
+<body>
+
+<div id="app">
+
+<p>
+login: <input v-model="login" type="text" name="login">
+password: <input v-model="password" type="password" name="password">
+</p>
+
+<button v-on:click="doLogin">login</button>
+
+{{ message }}
+
+<hr />
+
+<h2>Add new</h2>
+
+
+<input input v-model="newBikeride.title" />
+<button v-on:click="createBikeride">Create bikeride</button>
+
+</div>
+
+
+<script src="/bundles/ezplatformuiassets/vendors/ez-js-rest-client/dist/CAPI-min.js"></script>
+<script src="https://npmcdn.com/vue/dist/vue.js"></script>
+<script src="js/bikerides.js"></script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
 
 # NameVirtualHost %IP_ADDRESS%
 
-<VirtualHost 127.0.0.1:80>
+<VirtualHost *:80>
     ServerName headless.websc
     DocumentRoot /var/www/summercamp/workshops/headless/web
     DirectoryIndex app.php

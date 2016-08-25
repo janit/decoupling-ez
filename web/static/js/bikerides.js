@@ -2,13 +2,14 @@ new Vue({
   el: '#app',
   data: {
     message: '',
+    searchWord: '*',
     rides: [
         {
             'image': 'images/toulousse.png',
             'title': 'title 1',
             'author': 'da author',
             'route': 'Lyon Toulousse',
-            'distance': '30 Km',
+            'distance': '30',
             'level': 'easy'
         },
         {
@@ -16,7 +17,7 @@ new Vue({
             'title': 'title 2',
             'author': 'da author',
             'route': 'Lyon Toulousse',
-            'distance': '30 Km',
+            'distance': '30',
             'level': 'easy'
         },
         {
@@ -24,7 +25,7 @@ new Vue({
             'title': 'title 3',
             'author': 'da author',
             'route': 'Lyon Toulousse',
-            'distance': '30 Km',
+            'distance': '30',
             'level': 'easy'
         },
     ],
@@ -64,51 +65,57 @@ new Vue({
   methods: {
 
     refreshBikerideList: function(){
-        console.log('load the list of rides here!');
 
+        var that = this;
 
-        query = this.contentService.newViewCreateStruct('test-rest-view', 'ContentQuery');
-        query.body.ViewInput.LocationQuery.Criteria = { // use 'ContentQuery' here as well
-            FullTextCriterion: "ez",
+        query = this.contentService.newViewCreateStruct('bikesrides-view', 'ContentQuery');
+
+        query.body.ViewInput.ContentQuery.Criteria = {
+            ContentTypeIdentifierCriterion: 'ride'
         };
-        query.body.ViewInput.LocationQuery.limit = 10;
+
+        query.body.ViewInput.ContentQuery.limit = 10;
+
         // query.body.ViewInput.LocationQuery.offset = 0;
         this.contentService.createView(query, function (error, response) {
             if ( error ) {
                 console.log('Error!');
                 return;
             }
-            console.log("Search results", response.document.View.Result.searchHits.searchHit);
-        })
-
-/*
-
-        var query = this.contentService.newViewCreateStruct('bikerides-view', 'ContentQuery');
-
-
-
-/*
-
-        this.contentService.createView(query, function(){
-
             
+            var bikeRides = [];
+            var searchHits = response.document.View.Result.searchHits.searchHit;
+
+            for (i in searchHits){
+
+                var bikeRide = {};
+
+                var fields = searchHits[i].value.Content.CurrentVersion.Version.Fields.field;
+
+                for(j in fields){
+                    bikeRide[fields[j].fieldDefinitionIdentifier] = fields[j].fieldValue;
+                }
+
+                bikeRides.push(bikeRide);
+
+            }
+
+            that.rides = bikeRides;
+
         });
-
-
-//			query.body.ViewInput.LocationQuery.limit = 10;
-
-			contentService.createViewAsync(query).then(function(response){
-
-				var searchHits = response.document.View.Result.searchHits.searchHit;
-				todos = searchHits.map(getTodoContent);
-
-				return todos;
-
-			});
-*/
-        
+    
     }
 
   }
 
-})
+});
+
+function getFieldValues(field){
+
+    var fieldValue = {};
+
+    fieldValue[field.fieldDefinitionIdentifier] = field.fieldValue;
+
+	return fieldValue;
+
+}

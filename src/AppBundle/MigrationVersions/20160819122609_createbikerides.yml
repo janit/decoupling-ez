@@ -15,7 +15,7 @@
             identifier: title
             require: true
         -
-            type: ezauthor
+            type: ezstring
             name: Author
             identifier: author
             require: false
@@ -58,4 +58,42 @@
     main_location: 2
     priority: 0
     attributes:
-        - title: 'First ride'
+        - image: 'images/toulousse.png'
+        - title: 'My first ride'
+        - author: 'Inaki Juaniz-Velilla'
+        - starting_point: 'Lyon'
+        - ending_point: 'Toulousse'
+        - length: '30'
+        - difficulty_level: 0
+
+-
+    mode: create
+    type: content
+    content_type: ride
+    main_location: 2
+    priority: 0
+    attributes:
+        - image: 'images/geneva.png'
+        - title: 'Geneva, My Favorite Ride'
+        - author: 'Sarah Haim-Lubczanski'
+        - starting_point: 'Lyon'
+        - ending_point: 'Geneva'
+        - length: '100'
+        - difficulty_level: 1
+
+-
+    mode: create
+    type: content
+    content_type: ride
+    main_location: 2
+    priority: 0
+    attributes:
+        - image: 'images/hauteville.png'
+        - title: 'Clemont-Ferrand; hard, but nice ;)'
+        - author: 'Roland Benedetti'
+        - starting_point: 'Lyon'
+        - ending_point: 'Clemont-Ferrand'
+        - length: '165'
+        - difficulty_level: 2
+
+

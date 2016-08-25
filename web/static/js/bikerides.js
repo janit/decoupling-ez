@@ -27,7 +27,9 @@ new Vue({
             'distance': '30 Km',
             'level': 'easy'
         },
-    ]
+    ],
+    capi: false,
+    contentService: false
   },
 
   created: function(){
@@ -42,15 +44,20 @@ new Vue({
         new eZ.SessionAuthAgent(credentials)
     )
 
+    this.contentService = this.capi.getContentService();
+
+    that = this;
+
     this.capi.logIn(function (error, response) {
         if ( error ) {
-            this.message = 'login failed';
+            that.message = 'login failed';
             return;
         }
-        this.message = 'login succesful';
-    });
 
-    this.refreshBikerideList();
+        that.message = 'log in ok!';
+        that.refreshBikerideList();
+
+    });
 
   },
   
@@ -58,6 +65,48 @@ new Vue({
 
     refreshBikerideList: function(){
         console.log('load the list of rides here!');
+
+
+        query = this.contentService.newViewCreateStruct('test-rest-view', 'ContentQuery');
+        query.body.ViewInput.LocationQuery.Criteria = { // use 'ContentQuery' here as well
+            FullTextCriterion: "ez",
+        };
+        query.body.ViewInput.LocationQuery.limit = 10;
+        // query.body.ViewInput.LocationQuery.offset = 0;
+        this.contentService.createView(query, function (error, response) {
+            if ( error ) {
+                console.log('Error!');
+                return;
+            }
+            console.log("Search results", response.document.View.Result.searchHits.searchHit);
+        })
+
+/*
+
+        var query = this.contentService.newViewCreateStruct('bikerides-view', 'ContentQuery');
+
+
+
+/*
+
+        this.contentService.createView(query, function(){
+
+            
+        });
+
+
+//			query.body.ViewInput.LocationQuery.limit = 10;
+
+			contentService.createViewAsync(query).then(function(response){
+
+				var searchHits = response.document.View.Result.searchHits.searchHit;
+				todos = searchHits.map(getTodoContent);
+
+				return todos;
+
+			});
+*/
+        
     }
 
   }

@@ -71,66 +71,69 @@
             </div>
         </header>
 
-        <section class="buttons">
-            <div class="container">
-                <div class="row regular-content-size">
-                    <div class="col-xs-6 col-xs-offset-3">
-                        <h4 class="center bottom">Find a Ride:</h4>
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </span>
+        <div id="app">
+
+            <section class="buttons">
+                <div class="container">
+                    <div class="row regular-content-size">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <h4 class="center bottom">Find a Ride:</h4>
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="buttons">
-            <div class="container">
-                <div class="row regular-content-size">
-                    <div class="col-xs-10 col-xs-offset-1 box-style">
-                        <h3 class="center bottom-plus new-header">List of all Rides</h3>
-                         <table class="table table-hover">
-                            <thead>
-                                <tr class="table-header">
-                                    <th>Ride</th>
-                                    <th></th>
-                                    <th>From - To</th>
-                                    <th>Distance</th>
-                                    <th>Level</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <img src="images/toulousse.png" style="width: 100%;">
-                                    </td>
-                                    <td>
-                                        <h3 class="header-link-table"><strong><a href="ride_view.html" target="_self">My first ride</a></strong></h3>
-                                        <p class="pre-small">Inaki Juaniz-Velilla</p>
-                                    </td>
-                                    <td>
-                                        <p>Lyon</p>
-                                        <p>Toulousse</p>
-                                    </td>
-                                    <td>
-                                        <p>30 Km</p>
-                                    </td>
-                                    <td>
-                                        <p>Super easy!</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <section class="buttons">
+                <div class="container">
+                    <div class="row regular-content-size">
+                        <div class="col-xs-10 col-xs-offset-1 box-style">
+                            <h3 class="center bottom-plus new-header">List of all Rides</h3>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="table-header">
+                                        <th>Ride</th>
+                                        <th></th>
+                                        <th>From - To</th>
+                                        <th>Distance</th>
+                                        <th>Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="ride in rides">
+                                        <td>
+                                            <img v-bind:src="ride.image" style="width: 100%;">
+                                        </td>
+                                        <td>
+                                            <h3 class="header-link-table"><strong><a href="#" target="_self">{{ ride.title }}</a></strong></h3>
+                                            <p class="pre-small">{{ ride.author }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ ride.route}}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ ride.distance }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ ride.level }}</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+        </div>
 
         <!-- Footer -->
         <footer class="text-center">
@@ -174,12 +177,20 @@
             </div>
         </footer>
 
-
          <!-- jQuery -->
         <script src="js/jquery.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         
+        <!-- Vue -->
+        <script src="js/vue.min.js"></script>
+
+        <!-- eZ Client API -->
+        <script src="/bundles/ezplatformuiassets/vendors/ez-js-rest-client/dist/CAPI-min.js"></script>
+
+        <!-- App js -->
+        <script src="js/bikerides.js"></script>
+
     </body>
 </html>

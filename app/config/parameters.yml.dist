@@ -8,6 +8,6 @@ parameters:
     database_driver: pdo_mysql
     database_host: localhost
     database_port: ~
-    database_name: summer
-    database_user: camp
-    database_password:
+    database_name: headless
+    database_user: summer
+    database_password: camp

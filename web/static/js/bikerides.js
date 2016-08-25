@@ -2,33 +2,8 @@ new Vue({
   el: '#app',
   data: {
     message: '',
-    searchWord: '*',
-    rides: [
-        {
-            'image': 'images/toulousse.png',
-            'title': 'title 1',
-            'author': 'da author',
-            'route': 'Lyon Toulousse',
-            'distance': '30',
-            'level': 'easy'
-        },
-        {
-            'image': 'images/toulousse.png',
-            'title': 'title 2',
-            'author': 'da author',
-            'route': 'Lyon Toulousse',
-            'distance': '30',
-            'level': 'easy'
-        },
-        {
-            'image': 'images/toulousse.png',
-            'title': 'title 3',
-            'author': 'da author',
-            'route': 'Lyon Toulousse',
-            'distance': '30',
-            'level': 'easy'
-        },
-    ],
+    searchWord: '',
+    rides: [],
     capi: false,
     contentService: false
   },
@@ -66,9 +41,12 @@ new Vue({
 
     refreshBikerideList: function(){
 
+        console.log('do search');
+
         var that = this;
 
         query = this.contentService.newViewCreateStruct('bikesrides-view', 'ContentQuery');
+
 
         query.body.ViewInput.ContentQuery.Criteria = {
             ContentTypeIdentifierCriterion: 'ride'
@@ -93,7 +71,7 @@ new Vue({
                 var fields = searchHits[i].value.Content.CurrentVersion.Version.Fields.field;
 
                 for(j in fields){
-                    bikeRide[fields[j].fieldDefinitionIdentifier] = fields[j].fieldValue;
+                    bikeRide[fields[j].fieldDefinitionIdentifier] = that.getSimpleValue(fields[j]);
                 }
 
                 bikeRides.push(bikeRide);
@@ -104,18 +82,32 @@ new Vue({
 
         });
     
+    },
+
+    getSimpleValue: function(field){
+
+        if(field.fieldDefinitionIdentifier == "description"){
+            return field.fieldValue.xhtml5edit;
+
+        } else if(field.fieldDefinitionIdentifier == "image"){
+            return field.fieldValue.uri;
+
+        } else if(field.fieldDefinitionIdentifier == "difficulty_level"){
+
+            if(field.fieldValue.length > 0){
+                var levels = ['easy','intermediate','hard'];
+                return levels[field.fieldValue[0]];
+
+            }
+
+            return 'not set';
+        }
+
+        return field.fieldValue;
+
     }
 
   }
 
 });
 
-function getFieldValues(field){
-
-    var fieldValue = {};
-
-    fieldValue[field.fieldDefinitionIdentifier] = field.fieldValue;
-
-	return fieldValue;
-
-}

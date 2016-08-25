@@ -84,7 +84,7 @@
                             <div class="input-group custom-search-form">
                                 <input v-model="searchWord" type="text" class="form-control">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
+                                    <button  v-on:click="refreshBikerideList" class="btn btn-default" type="button">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
                                 </span>
@@ -119,13 +119,13 @@
                                             <p class="pre-small">{{ ride.author }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ ride.route}}</p>
+                                            <p>{{ ride.starting_point }} - {{ ride.ending_point }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ ride.distance }}</p>
+                                            <p>{{ ride.length }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ ride.level }}</p>
+                                            <p>{{ ride.difficulty_level }}</p>
                                         </td>
                                     </tr>
                                 </tbody>

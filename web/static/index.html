@@ -138,6 +138,24 @@
                 </div>
             </section>
 
+            <section class="buttons">
+                <div class="container">
+                    <div class="row regular-content-size">
+                        <div class="col-xs-6 col-xs-offset-3">
+
+                            <h4 class="center bottom">Add a new ride</h4>
+                            <div class="input-group custom-search-form">
+
+                                    <input v-model="newRide.title" placeholder="title" type="text" class="form-control" required>
+                                    <button v-on:click="createNewRide" class="btn btn-default" type="button">
+                                        Create a new ride
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </div>
 
         <!-- Footer -->

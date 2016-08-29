@@ -5,7 +5,8 @@ new Vue({
     searchWord: '',
     rides: [],
     capi: false,
-    contentService: false
+    contentService: false,
+    newRide: {}
   },
 
   created: function(){
@@ -18,7 +19,7 @@ new Vue({
     this.capi = new eZ.CAPI(
         'http://headless.websc',
         new eZ.SessionAuthAgent(credentials)
-    )
+    );
 
     this.contentService = this.capi.getContentService();
 
@@ -46,7 +47,6 @@ new Vue({
         var that = this;
 
         query = this.contentService.newViewCreateStruct('bikesrides-view', 'ContentQuery');
-
 
         query.body.ViewInput.ContentQuery.Criteria = {
             ContentTypeIdentifierCriterion: 'ride'
@@ -90,7 +90,10 @@ new Vue({
             return field.fieldValue.xhtml5edit;
 
         } else if(field.fieldDefinitionIdentifier == "image"){
-            return field.fieldValue.uri;
+
+            if(field.fieldValue){
+                return field.fieldValue.uri;
+            }
 
         } else if(field.fieldDefinitionIdentifier == "difficulty_level"){
 
@@ -104,6 +107,38 @@ new Vue({
         }
 
         return field.fieldValue;
+
+    },
+
+    createNewRide: function(){
+
+        var that = this;
+
+        var locationStruct = this.contentService.newLocationCreateStruct('/api/ezp/v2/content/locations/1/2');
+        var contentCreateStruct = this.contentService.newContentCreateStruct('/api/ezp/v2/content/types/13',locationStruct,'eng-GB');
+
+        contentCreateStruct.addField('title',this.newRide.title);
+
+        this.contentService.createContent(contentCreateStruct,function(error, response){
+
+            if( error ) {
+                that.message = 'CONTENT CREATION FAILED';
+            } else {
+
+                var createdObjectId = response.document.Content._id;
+                that.contentService.publishVersion('/api/ezp/v2/content/objects/' + createdObjectId + '/versions/1', function(error, response){
+
+                    that.message = 'Created and published content object ' + createdObjectId;
+
+                });
+
+            }
+
+            that.newRide = {};
+            that.refreshBikerideList();
+
+
+        });
 
     }
 

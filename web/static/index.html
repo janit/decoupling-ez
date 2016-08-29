@@ -71,6 +71,8 @@
             </div>
         </header>
 
+        <div id="app">
+
         <section class="buttons">
             <div class="container">
                 <div class="row regular-content-size">
@@ -105,25 +107,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <img src="images/toulousse.png" style="width: 100%;">
-                                    </td>
-                                    <td>
-                                        <h3 class="header-link-table"><strong><a href="ride_view.html" target="_self">My first ride</a></strong></h3>
-                                        <p class="pre-small">Inaki Juaniz-Velilla</p>
-                                    </td>
-                                    <td>
-                                        <p>Lyon</p>
-                                        <p>Toulousse</p>
-                                    </td>
-                                    <td>
-                                        <p>30 Km</p>
-                                    </td>
-                                    <td>
-                                        <p>Super easy!</p>
-                                    </td>
-                                </tr>
+                            <tr v-for="ride in rides">
+                                <td>
+                                    <img v-bind:src="ride.image" style="width: 100%;">
+                                </td>
+                                <td>
+                                    <h3 class="header-link-table"><strong><a href="#" target="_self">{{ ride.title }}</a></strong></h3>
+                                    <p class="pre-small">{{ ride.author }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ ride.route}}</p>
+                                </td>
+                                <td>
+                                    <p>{{ ride.distance }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ ride.level }}</p>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
 
@@ -131,6 +132,8 @@
                 </div>
             </div>
         </section>
+
+        </div>
 
         <!-- Footer -->
         <footer class="text-center">
@@ -180,6 +183,12 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
-        
+
+        <!-- Vue -->
+        <script src="js/vue.min.js"></script>
+
+        <!-- App js -->
+        <script src="js/bikerides.js"></script>
+
     </body>
 </html>

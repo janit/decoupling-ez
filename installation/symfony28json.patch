@@ -1,0 +1,29 @@
+--- vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php	2016-06-30 18:42:24.000000000 +0300
++++ vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php2	2016-08-29 14:07:54.000000000 +0300
+@@ -419,4 +419,26 @@
+ 
+         return $this->container->get('security.csrf.token_manager')->isTokenValid(new CsrfToken($id, $token));
+     }
++
++    /**
++     * Returns a JsonResponse that uses the serializer component if enabled, or json_encode.
++     *
++     * @param mixed $data    The response data
++     * @param int   $status  The status code to use for the Response
++     * @param array $headers Array of extra headers to add
++     * @param array $context Context to pass to serializer when using serializer component
++     *
++     * @return JsonResponse
++     */
++    protected function json($data, $status = 200, $headers = array(), $context = array())
++    {
++        if ($this->container->has('serializer')) {
++            $json = $this->container->get('serializer')->serialize($data, 'json', array_merge(array(
++                'json_encode_options' => JsonResponse::DEFAULT_ENCODING_OPTIONS,
++            ), $context));
++            return new JsonResponse($json, $status, $headers, true);
++        }
++        return new JsonResponse($data, $status, $headers);
++    }
++
+ }

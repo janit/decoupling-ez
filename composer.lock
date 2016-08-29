@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "05519df089d14b0d877931533e871712",
-    "content-hash": "76497036515a83ce1bdf7ca57f931270",
+    "hash": "7af7d70da58744843da8816f2511a632",
+    "content-hash": "b91610f2adf66af6ad0743c3d8e26c1a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3702,6 +3702,93 @@
                 "paging"
             ],
             "time": "2016-03-16 19:24:56"
+        },
+        {
+            "name": "youshido/graphql",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Youshido/GraphQL.git",
+                "reference": "f1a7299345139d9471cea5fbbfdab039730517e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Youshido/GraphQL/zipball/f1a7299345139d9471cea5fbbfdab039730517e5",
+                "reference": "f1a7299345139d9471cea5fbbfdab039730517e5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5,<8.0-DEV"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Youshido\\GraphQL\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Viniychuk",
+                    "email": "a@viniychuk.com"
+                },
+                {
+                    "name": "Portey Vasil",
+                    "email": "portey@gmail.com"
+                }
+            ],
+            "description": "Pure PHP GraphQL",
+            "time": "2016-08-14 17:41:04"
+        },
+        {
+            "name": "youshido/graphql-bundle",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Youshido/GraphQLBundle.git",
+                "reference": "3d571e996f21ebb7dbb3a8235dd5b0fda53d5087"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Youshido/GraphQLBundle/zipball/3d571e996f21ebb7dbb3a8235dd5b0fda53d5087",
+                "reference": "3d571e996f21ebb7dbb3a8235dd5b0fda53d5087",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "youshido/graphql": "~1.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Youshido\\GraphQLBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Viniychuk",
+                    "email": "a@viniychuk.com"
+                },
+                {
+                    "name": "Portey Vasil",
+                    "email": "portey@gmail.com"
+                }
+            ],
+            "description": "Symfony GraphQl Bundle",
+            "time": "2016-08-26 11:02:37"
         },
         {
             "name": "zendframework/zend-code",

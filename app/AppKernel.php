@@ -48,6 +48,7 @@ class AppKernel extends Kernel
             new EzSystems\EzPlatformSolrSearchEngineBundle\EzSystemsEzPlatformSolrSearchEngineBundle(),
             new \Kaliop\eZMigrationBundle\EzMigrationBundle(),
             new AppBundle\AppBundle(),
+            new Youshido\GraphQLBundle\GraphQLBundle(),
         );
 
         switch ($this->getEnvironment()) {

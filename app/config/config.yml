@@ -104,3 +104,6 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+graph_ql:
+  schema_class: AppBundle\GraphQL\Schema

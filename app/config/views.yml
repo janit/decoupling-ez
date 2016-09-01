@@ -1,0 +1,9 @@
+ezpublish:
+    system:
+        default:
+            location_view:
+                full:
+                    home_page:
+                        template: full\home_page.html.twig
+                        match:
+                            Identifier\ContentType: [folder]

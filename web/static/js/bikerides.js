@@ -29,7 +29,6 @@ new Vue({
             'level': 'easy'
         },
     ],    
-    rides: [],
     capi: false,
     contentService: false
   },

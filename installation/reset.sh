@@ -1,4 +1,5 @@
 mysql -usummer -pcamp -e "TRUNCATE TABLE kaliop_migrations;" headless
+composer install
 php app/console cache:clear
 php app/console ezplatform:install clean
 php app/console kaliop:migration:migrate -n
